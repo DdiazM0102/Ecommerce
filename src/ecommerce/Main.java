@@ -216,23 +216,20 @@ public class Main {
     }
 
     private static void hacerDevolucion() {
-        Usuario usuario = solicitarUsuario();
-        if (usuario == null) {
-            return;
-        }
-
-        System.out.print("Ingrese ID del producto a devolver: ");
-        int idProducto = scanner.nextInt();
-        scanner.nextLine();
-        Producto producto = programa.getProductoPorId(idProducto);
-
-        if (producto != null) {
-            usuario.devolverProducto(producto);
-            System.out.println("Producto devuelto con éxito.");
-        } else {
-            System.out.println("Producto no encontrado.");
-        }
+    Usuario usuario = solicitarUsuario();
+    if (usuario == null) {
+        return;
     }
+
+    // Crear una devolución a través del proxy
+    Devolucion devolucion = new ProxyDevolucion();
+
+    // Procesar la devolución
+    devolucion.procesarDevolucion();
+
+    System.out.println("Estado de la devolución: " + devolucion.obtenerEstado());
+}
+
 
     private static Usuario solicitarUsuario() {
         System.out.print("Ingrese ID del usuario: ");

@@ -12,6 +12,7 @@ class Usuario implements Observer {
     private String telefono;
     private List<Producto> productosApartados;
     private List<CompraProgramada> comprasProgramadas;
+    private Devolucion devolucion;
 
     public Usuario(int id, String nombre, String email, String direccion, String telefono) {
         this.id = id;
@@ -21,6 +22,7 @@ class Usuario implements Observer {
         this.telefono = telefono;
         this.productosApartados = new ArrayList<>();
         this.comprasProgramadas = new ArrayList<>();
+        this.devolucion = new ProxyDevolucion();
     }
 
     @Override
@@ -54,6 +56,10 @@ class Usuario implements Observer {
                 System.out.println("ID: " + producto.getId() + ", Nombre: " + producto.getNombre() + ", Precio: " + producto.getPrecio());
             }
         }
+    }
+    
+    public void solicitarDevolucion() {
+        devolucion.procesarDevolucion();
     }
 
     public int getId() {
