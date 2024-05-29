@@ -23,4 +23,8 @@ class Producto {
     public double getPrecio() {
         return precio;
     }
+
+    public void setPrecio(double nuevoPrecio) {
+        this.precio = nuevoPrecio;
+    }
 }

@@ -1,11 +1,11 @@
 package ecommerce;
 
-class compraProgramada {
+class CompraProgramada {
 
     private Producto producto;
     private String fecha;
 
-    public compraProgramada(Producto producto, String fecha) {
+    public CompraProgramada(Producto producto, String fecha) {
         this.producto = producto;
         this.fecha = fecha;
     }

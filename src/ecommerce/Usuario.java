@@ -3,7 +3,7 @@ package ecommerce;
 import java.util.ArrayList;
 import java.util.List;
 
-class Usuario {
+class Usuario implements Observer {
 
     private int id;
     private String nombre;
@@ -11,7 +11,7 @@ class Usuario {
     private String direccion;
     private String telefono;
     private List<Producto> productosApartados;
-    private List<compraProgramada> comprasProgramadas;
+    private List<CompraProgramada> comprasProgramadas;
 
     public Usuario(int id, String nombre, String email, String direccion, String telefono) {
         this.id = id;
@@ -21,6 +21,11 @@ class Usuario {
         this.telefono = telefono;
         this.productosApartados = new ArrayList<>();
         this.comprasProgramadas = new ArrayList<>();
+    }
+
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("Notificación para " + nombre + ": " + mensaje);
     }
 
     public void comprarProducto(Producto producto) {
@@ -37,7 +42,7 @@ class Usuario {
     }
 
     public void programarCompra(Producto producto, String fecha) {
-        comprasProgramadas.add(new compraProgramada(producto, fecha));
+        comprasProgramadas.add(new CompraProgramada(producto, fecha));
         System.out.println("Usuario " + nombre + " ha programado la compra del producto " + producto.getNombre() + " para la fecha " + fecha);
     }
 

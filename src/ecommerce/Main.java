@@ -9,6 +9,10 @@ public class Main {
     private static final MetodosPago metodosPago = new MetodosPago();
 
     public static void main(String[] args) {
+        // Crear y registrar observadores adicionales
+        Mensajero mensajero = new Mensajero("Carlos");
+        programa.registrarObserver(mensajero);
+
         int opcion;
         do {
             mostrarMenu();
@@ -29,12 +33,15 @@ public class Main {
                     hacerDevolucion();
                     break;
                 case 5:
+                    cambiarPrecioProducto();
+                    break;
+                case 6:
                     System.out.println("Saliendo del programa...");
                     break;
                 default:
                     System.out.println("Opción no válida.");
             }
-        } while (opcion != 5);
+        } while (opcion != 6);
     }
 
     private static void mostrarMenu() {
@@ -44,7 +51,8 @@ public class Main {
         System.out.println("2. Comprar producto");
         System.out.println("3. Apartar producto");
         System.out.println("4. Hacer devolución del producto");
-        System.out.println("5. Salir");
+        System.out.println("5. Cambiar precio de producto");
+        System.out.println("6. Salir");
         System.out.print("Ingrese su opción: ");
     }
 
@@ -261,5 +269,16 @@ public class Main {
             default:
                 System.out.println("Opción no válida. Pago no realizado.");
         }
+    }
+
+    private static void cambiarPrecioProducto() {
+        System.out.print("Ingrese ID del producto: ");
+        int idProducto = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Ingrese el nuevo precio del producto: ");
+        double nuevoPrecio = scanner.nextDouble();
+        scanner.nextLine();
+
+        programa.cambiarPrecioProducto(idProducto, nuevoPrecio);
     }
 }
