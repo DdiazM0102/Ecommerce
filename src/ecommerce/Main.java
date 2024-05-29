@@ -248,28 +248,34 @@ public class Main {
     }
 
     private static void seleccionarMetodoPago(Usuario usuario, Producto producto) {
-        System.out.println("Seleccione el método de pago:");
-        System.out.println("1. Transferencia electrónica");
-        System.out.println("2. Tarjeta");
-        System.out.println("3. Efectivo");
-        System.out.print("Ingrese su opción: ");
-        int opcionPago = scanner.nextInt();
-        scanner.nextLine();
+    System.out.println("Seleccione el método de pago:");
+    System.out.println("1. Transferencia electrónica");
+    System.out.println("2. Tarjeta");
+    System.out.println("3. Efectivo");
+    System.out.print("Ingrese su opción: ");
+    int opcionPago = scanner.nextInt();
+    scanner.nextLine();
 
-        switch (opcionPago) {
-            case 1:
-                metodosPago.pagarConTransferenciaElectronica(usuario, producto);
-                break;
-            case 2:
-                metodosPago.pagarConTarjeta(usuario, producto);
-                break;
-            case 3:
-                metodosPago.pagarConEfectivo(usuario, producto);
-                break;
-            default:
-                System.out.println("Opción no válida. Pago no realizado.");
-        }
+    Pago metodoPago;
+
+    switch (opcionPago) {
+        case 1:
+            metodoPago = new ValidadorPago(new TransferenciaElectronica());
+            break;
+        case 2:
+            metodoPago = new ValidadorPago(new TarjetaCredito());
+            break;
+        case 3:
+            metodoPago = new ValidadorPago(new Efectivo());
+            break;
+        default:
+            System.out.println("Opción no válida.");
+            return;
     }
+
+    metodoPago.procesarPago(usuario, producto);
+}
+
 
     private static void cambiarPrecioProducto() {
         System.out.print("Ingrese ID del producto: ");
