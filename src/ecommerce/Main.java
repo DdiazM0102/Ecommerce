@@ -13,7 +13,14 @@ public class Main {
         Mensajero mensajero = new Mensajero("Carlos");
         programa.registrarObserver(mensajero);
 
+        
+        
         int opcion;
+        
+        System.out.println("Iniciando la aplicacion...");
+        
+        RegistroActividad.getInstancia().registrarActividad("Inicio de la aplicacion");
+        
         do {
             mostrarMenu();
             opcion = scanner.nextInt();

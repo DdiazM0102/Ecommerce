@@ -23,6 +23,7 @@ class Usuario implements Observer {
         this.productosApartados = new ArrayList<>();
         this.comprasProgramadas = new ArrayList<>();
         this.devolucion = new ProxyDevolucion();
+        RegistroActividad.getInstancia().registrarActividad("Nuevo usuario creado: " + nombre);
     }
 
     @Override
